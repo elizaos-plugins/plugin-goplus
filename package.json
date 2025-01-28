@@ -17,5 +17,15 @@
     "devDependencies": {
         "@types/ws": "^8.5.13",
         "tsx": "^4.19.2"
+    },
+    "agentConfig": {
+        "pluginType": "elizaos:client:1.0.0",
+        "pluginParameters": {
+            "GOPLUS_API_KEY": {
+                "type": "string",
+                "minLength": 1,
+                "description": "GoPlus API key for authentication"
+            }
+        }
     }
 }
