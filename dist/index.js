@@ -8,7 +8,7 @@ var GoPlusType = {
   SUITOKEN_SECURITY_CHECK: "SUITOKEN_SECURITY_CHECK",
   RUGPULL_SECURITY_CHECK: "RUGPULL_SECURITY_CHECK",
   NFT_SECURITY_CHECK: "NFT_SECURITY_CHECK",
-  ADRESS_SECURITY_CHECK: "ADRESS_SECURITY_CHECK",
+  ADDRESS_SECURITY_CHECK: "ADDRESS_SECURITY_CHECK",
   APPROVAL_SECURITY_CHECK: "APPROVAL_SECURITY_CHECK",
   ACCOUNT_ERC20_SECURITY_CHECK: "ACCOUNT_ERC20_SECURITY_CHECK",
   ACCOUNT_ERC721_SECURITY_CHECK: "ACCOUNT_ERC721_SECURITY_CHECK",
@@ -199,14 +199,14 @@ Available actions:
 \`\`\`
 
 
-- [ADRESS_SECURITY_CHECK]
+- [ADDRESS_SECURITY_CHECK]
     Description: Analysis of specific address security status, detecting known malicious addresses, scam addresses or high-risk addresses
     Keywords: wallet security, malicious address, scam address, blacklist
     Respond with a JSON markdown block containing only the extracted values:
 
 \`\`\`json
 {
-"type": "ADRESS_SECURITY_CHECK"
+"type": "ADDRESS_SECURITY_CHECK",
 "network": "1", //default: 1 (Ethereum:1, Optimism:10, Cronos:25, BSC:56, Gnosis:100, HECO:128, Polygon:137, Fantom:250, KCC:321, zkSync Era:324, FON:201022, Arbitrum:42161, Avalanche:43114, Linea Mainnet:59144, Tron:tron, Scroll:534352, opBNB:204, Base:8453, Solana:solana)
 "wallet": "" | null,
 }
@@ -356,7 +356,7 @@ var GoplusSecurityService = class extends Service {
         case GoPlusType.NFT_SECURITY_CHECK:
           checkResult = await goPlusManage.nftSecurity(obj.network, obj.token);
           break;
-        case GoPlusType.ADRESS_SECURITY_CHECK:
+        case GoPlusType.ADDRESS_SECURITY_CHECK:
           checkResult = await goPlusManage.addressSecurity(obj.wallet);
           break;
         case GoPlusType.APPROVAL_SECURITY_CHECK:
@@ -378,7 +378,7 @@ var GoplusSecurityService = class extends Service {
           checkResult = await goPlusManage.dappSecurityAndPhishingSite(obj.url);
           break;
         default:
-          throw new Error("type is invaild");
+          throw new Error("type is invalid");
       }
       elizaLogger.log("checkResult text", checkResult);
       const checkResponse = await generateText({
